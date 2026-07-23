@@ -1,9 +1,10 @@
-// index.js — servidor del panel. Fase 1: lectura. Fase 2: SSE. Fase 3: estáticos.
+// index.js — servidor del panel. Fases: lectura, SSE, estáticos, escritura controlada.
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getRegistry, getStatus, getMessages, getLog, isValidAgent } from './fsReader.js';
 import { createWatcher } from './watcher.js';
+import { writeRouterMessage } from './messageWriter.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -67,6 +68,20 @@ app.get('/api/agents/:name/logs', async (req, res) => {
     res.json(await getLog(req.params.name, req.query.date));
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+// Único endpoint de escritura: mensaje nuevo vía router/inbox/.
+app.post('/api/message', express.json({ limit: '32kb' }), async (req, res) => {
+  try {
+    const { usuario, tema, texto } = req.body || {};
+    // tema es solo un hint opcional; si viene, debe ser un agente del registry
+    if (tema && !(await isValidAgent(tema))) {
+      return res.status(400).json({ error: `tema-hint no es un agente válido: ${tema}` });
+    }
+    res.status(201).json(await writeRouterMessage({ usuario, tema, texto }));
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message });
   }
 });
 

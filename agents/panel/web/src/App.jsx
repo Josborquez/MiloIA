@@ -3,6 +3,7 @@ import { getJSON, subscribe } from './api.js';
 import HealthGrid from './components/HealthGrid.jsx';
 import AgentDetail from './components/AgentDetail.jsx';
 import AlertsFeed from './components/AlertsFeed.jsx';
+import MessageComposer from './components/MessageComposer.jsx';
 
 export default function App() {
   const [registry, setRegistry] = useState({ agents: [] });
@@ -62,7 +63,11 @@ export default function App() {
             <AgentDetail agent={selected} version={versions[selected] || 0} />
           )}
         </section>
-        <aside>
+        <aside className="space-y-6">
+          <MessageComposer
+            agents={registry.agents}
+            routerVersion={versions.router || 0}
+          />
           <AlertsFeed alerts={status.alerts} lastUpdate={status.timestamp} />
         </aside>
       </main>
