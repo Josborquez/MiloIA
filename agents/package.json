@@ -1,0 +1,10 @@
+{
+  "name": "agents",
+  "private": true,
+  "description": "Ecosistema de agentes — scripts de conveniencia",
+  "scripts": {
+    "panel": "npm --prefix panel start",
+    "panel:dev": "npm --prefix panel run dev",
+    "panel:build": "npm --prefix panel run build"
+  }
+}

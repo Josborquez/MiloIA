@@ -7,6 +7,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
+    "dev": "concurrently -n server,web \"node server/index.js\" \"vite web\"",
     "dev:web": "vite web",
     "build": "vite build web"
   },
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.0.4",
+    "concurrently": "^10.0.3",
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5"
   }
