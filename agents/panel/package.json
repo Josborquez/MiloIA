@@ -9,6 +9,7 @@
     "start": "node server/index.js"
   },
   "dependencies": {
+    "chokidar": "^5.0.0",
     "express": "^4.21.0"
   }
 }
