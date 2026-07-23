@@ -35,6 +35,12 @@ Recibes mensajes del Router en `inbox/`, respondes en `outbox/`. Capa 3 del ecos
 Operaciones destructivas (delete, cambios masivos >20 eventos) responden primero con
 `status: needs_confirmation` y esperan un segundo mensaje del usuario antes de ejecutar.
 
+## Pruebas
+Cualquier prueba de flujo (CRUD, confirmaciones, verificador) se hace SOLO sobre
+eventos de prueba creados para ese fin (título con prefijo "TEST —"). NUNCA usar
+eventos reales del calendario como objetivo de una prueba, ni siquiera en simulaciones
+que no ejecutan la acción.
+
 ## Mensajes (inbox/outbox)
 Entrada (`inbox/<ISO>.json`): `{ from, user, channel, text, ts }`
 Salida (`outbox/<ISO>.json`): `{ to: "router", status: "ok|error|needs_confirmation", summary, detail: { ids, verificados }, ts }`

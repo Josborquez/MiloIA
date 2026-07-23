@@ -1,0 +1,22 @@
+{
+  "to": "router",
+  "status": "ok",
+  "summary": "Evento de prueba creado y verificado: \"TEST — Miércoles de Commander Precon\" (ID 4506), hoy jueves 23 de julio 2026, 16:00–22:00, Onplay Games (venue 1089), costo $3.500 (sesión tarde gratis). Aparece en el listado público de TEC.",
+  "detail": {
+    "operacion": "create",
+    "ids": [4506],
+    "verificados": [4506],
+    "evento": {
+      "id": 4506,
+      "titulo": "TEST — Miércoles de Commander Precon",
+      "inicio": "2026-07-23 16:00:00",
+      "fin": "2026-07-23 22:00:00",
+      "timezone": "UTC-4",
+      "venue": 1089,
+      "costo": "3500",
+      "status": "publish"
+    },
+    "fuente": "GET /wp-json/tribe/events/v1/events/?start_date=2026-07-23&end_date=2026-07-24&_t=N (listado TEC, anti-cache) → 1 evento, ID 4506 presente"
+  },
+  "ts": "2026-07-23T19:57:00-04:00"
+}
