@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "OnplayGamesMCP": {
+      "type": "http",
+      "url": "https://onplaygames.cl/wp-json/mcp/v1/http",
+      "note": "Sitio principal: OnPlay Games (WordPress + WooCommerce en Hostinger). Token/bearer configurado en Claude, no en este archivo."
+    },
+    "WordPressCom": {
+      "type": "http",
+      "url": "https://public-api.wordpress.com/wpcom/v2/mcp/v1",
+      "note": "Opcional: solo para sitios alojados en WordPress.com. Autenticación vía OAuth del conector."
+    }
+  }
+}

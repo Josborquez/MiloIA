@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "onplaygames": {
+      "type": "http",
+      "url": "https://onplaygames.cl/wp-json/mcp/v1/http"
+    }
+  }
+}

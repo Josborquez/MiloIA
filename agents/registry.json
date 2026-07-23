@@ -31,9 +31,25 @@
     {
       "name": "ecommerce",
       "path": "~/agents/ecommerce",
-      "role": "Operaciones Shopify, research y copywriting",
+      "role": "Tienda OnPlay Games (WooCommerce/WordPress en Hostinger), research y copywriting",
       "status": "ok",
-      "last_ping": null
+      "last_ping": null,
+      "store": {
+        "site": "https://onplaygames.cl",
+        "platform": "WordPress + WooCommerce",
+        "hosting": "Hostinger",
+        "mcp": "OnplayGamesMCP"
+      }
+    },
+    {
+      "name": "eventos",
+      "path": "~/agents/eventos",
+      "role": "CRUD de eventos de The Events Calendar en onplaygames.cl",
+      "status": "ok",
+      "last_ping": null,
+      "mcp": ["onplaygames"],
+      "healthcheck": "last-status.json",
+      "keywords": ["evento", "torneo", "calendario", "weekly", "agenda", "horario", "inscripción"]
     }
   ]
 }
