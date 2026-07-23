@@ -1,0 +1,20 @@
+{
+  "to": "router",
+  "status": "ok",
+  "summary": "Hoy (jueves 23 de julio de 2026) no hay eventos agendados en el calendario. El calendario retoma actividad el sábado 1 de agosto: 124 eventos publicados para agosto, partiendo con Trading Fest Modern 2026, Premodern 11:00, Riftbound 14:30 y One Piece 17:00.",
+  "detail": {
+    "consulta": {
+      "operacion": "read",
+      "rango": "2026-07-23 a 2026-07-24"
+    },
+    "eventos_hoy": 0,
+    "proximos": [
+      { "id": 4321, "titulo": "DESTINATION EVENT — TRADING FEST MODERN 2026", "inicio": "2026-08-01 00:00:00" },
+      { "id": 4485, "titulo": "Premodern", "inicio": "2026-08-01 11:00:00" },
+      { "id": 4486, "titulo": "Riftbound", "inicio": "2026-08-01 14:30:00" },
+      { "id": 4487, "titulo": "One Piece", "inicio": "2026-08-01 17:00:00" }
+    ],
+    "fuente": "GET /wp-json/tribe/events/v1/events/ (listado TEC, verificado con _t anti-cache)"
+  },
+  "ts": "2026-07-23T18:35:00-04:00"
+}

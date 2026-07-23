@@ -15,7 +15,8 @@
 |------|---------|
 | Email, bandeja, inbox | `../email/inbox/` |
 | Empresa, productos, contratos | `../company/inbox/` |
-| Shopify, pedidos, inventario | `../ecommerce/inbox/` |
+| Tienda, WooCommerce, WordPress, pedidos, inventario, onplaygames.cl | `../ecommerce/inbox/` |
+| Eventos, torneos, calendario, weekly, agenda, horarios, inscripción | `../eventos/inbox/` |
 | Otros | Responder: "No tengo agente para eso" |
 
 ## Restricciones

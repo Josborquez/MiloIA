@@ -1,2 +1,4 @@
 [2026-07-23T12:01:05Z] IN telegram/terry -> dispatch: company (tema: politicas). Mensaje: 20260723T120100-telegram.md
 [2026-07-23T12:02:10Z] OUT company/outbox -> telegram/terry. Reenvio sin edicion.
+[2026-07-23T18:34:00-04:00] IN panel/terry -> dispatch: eventos (tema: calendario). Mensaje: 20260723T182810-panel.md
+[2026-07-23T18:35:10-04:00] OUT eventos/outbox -> panel/terry. Reenvio sin edicion.
