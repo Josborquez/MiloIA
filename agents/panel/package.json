@@ -1,0 +1,14 @@
+{
+  "name": "panel-agentes",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Panel gráfico del ecosistema de agentes (lectura y control vía router)",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
