@@ -1,8 +1,11 @@
-// index.js — servidor del panel. Fase 1: lectura. Fase 2: SSE en tiempo real.
+// index.js — servidor del panel. Fase 1: lectura. Fase 2: SSE. Fase 3: estáticos.
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { getRegistry, getStatus, getMessages, getLog, isValidAgent } from './fsReader.js';
 import { createWatcher } from './watcher.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const HOST = '127.0.0.1'; // solo localhost, sin exposición a red
 const PORT = process.env.PORT || 4321;
@@ -66,6 +69,9 @@ app.get('/api/agents/:name/logs', async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
+// Frontend compilado (npm run build → panel/dist)
+app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 
 await createWatcher(broadcast);
 
