@@ -1,0 +1,2 @@
+[2026-07-23T12:01:05Z] IN telegram/terry -> dispatch: company (tema: politicas). Mensaje: 20260723T120100-telegram.md
+[2026-07-23T12:02:10Z] OUT company/outbox -> telegram/terry. Reenvio sin edicion.

@@ -1,0 +1,39 @@
+{
+  "agents": [
+    {
+      "name": "dashboard",
+      "path": "~/agents/dashboard",
+      "role": "Monitoreo de salud del ecosistema",
+      "status": "ok",
+      "last_ping": null
+    },
+    {
+      "name": "router",
+      "path": "~/agents/router",
+      "role": "Punto de entrada único y dispatching",
+      "status": "ok",
+      "last_ping": null
+    },
+    {
+      "name": "email",
+      "path": "~/agents/email",
+      "role": "Gestión de correo (lectura, etiquetado, drafts)",
+      "status": "ok",
+      "last_ping": null
+    },
+    {
+      "name": "company",
+      "path": "~/agents/company",
+      "role": "Knowledge base interna de la empresa",
+      "status": "ok",
+      "last_ping": null
+    },
+    {
+      "name": "ecommerce",
+      "path": "~/agents/ecommerce",
+      "role": "Operaciones Shopify, research y copywriting",
+      "status": "ok",
+      "last_ping": null
+    }
+  ]
+}

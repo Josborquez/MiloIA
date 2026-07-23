@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-07-23T12:00:00Z",
+  "agents": {
+    "dashboard": { "status": "ok", "last_ping": "2026-07-23T12:00:00Z", "last_error": null },
+    "router": { "status": "ok", "last_ping": "2026-07-23T12:00:00Z", "last_error": null },
+    "email": { "status": "ok", "last_ping": "2026-07-23T12:00:00Z", "last_error": null },
+    "company": { "status": "ok", "last_ping": "2026-07-23T12:00:00Z", "last_error": null },
+    "ecommerce": { "status": "ok", "last_ping": "2026-07-23T12:00:00Z", "last_error": null }
+  }
+}
