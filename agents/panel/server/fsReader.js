@@ -90,6 +90,35 @@ export async function getMessages(agent, box) {
   return messages;
 }
 
+/**
+ * Operaciones que esperan aprobación: mensajes en cualquier outbox/ con
+ * frontmatter `requiere-aprobacion: true` (fallback: cuerpo contiene
+ * "esperando aprobación").
+ */
+export async function getPending() {
+  const registry = await getRegistry();
+  const pending = [];
+  for (const { name } of registry.agents) {
+    const messages = await getMessages(name, 'outbox');
+    for (const m of messages) {
+      const fm = m.frontmatter || {};
+      const flagged =
+        fm['requiere-aprobacion'] === 'true' ||
+        (m.body || '').toLowerCase().includes('esperando aprobación');
+      if (flagged) {
+        pending.push({
+          id: fm['operacion-id'] || `${name}:${m.file}`,
+          agent: name,
+          file: m.file,
+          frontmatter: fm,
+          body: m.body,
+        });
+      }
+    }
+  }
+  return pending;
+}
+
 /** Log del día (YYYY-MM-DD) de un agente. Default: hoy. */
 export async function getLog(agent, date) {
   const day = date || new Date().toISOString().slice(0, 10);

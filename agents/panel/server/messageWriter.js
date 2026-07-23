@@ -15,7 +15,7 @@ function sanitizeField(value) {
  * Escribe un mensaje en router/inbox/ con nombre YYYYMMDDTHHMMSS-panel.md.
  * Escritura atómica: write a .tmp + rename. Devuelve { file }.
  */
-export async function writeRouterMessage({ usuario, tema, texto }) {
+export async function writeRouterMessage({ usuario, tema, texto, referencia }) {
   if (typeof texto !== 'string' || !texto.trim()) {
     throw Object.assign(new Error('texto requerido'), { status: 400 });
   }
@@ -47,6 +47,8 @@ export async function writeRouterMessage({ usuario, tema, texto }) {
   ];
   const temaLimpio = sanitizeField(tema);
   if (temaLimpio) lines.push(`tema-hint: ${temaLimpio}`); // solo hint; el dispatch lo decide el router
+  const refLimpia = sanitizeField(referencia);
+  if (refLimpia) lines.push(`en-referencia-a: ${refLimpia}`);
   lines.push('---', '', texto.trim(), '');
 
   const tmp = dest + '.tmp';

@@ -4,6 +4,7 @@ import HealthGrid from './components/HealthGrid.jsx';
 import AgentDetail from './components/AgentDetail.jsx';
 import AlertsFeed from './components/AlertsFeed.jsx';
 import MessageComposer from './components/MessageComposer.jsx';
+import ApprovalsPanel from './components/ApprovalsPanel.jsx';
 
 export default function App() {
   const [registry, setRegistry] = useState({ agents: [] });
@@ -11,6 +12,8 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   // contador por agente: se incrementa con eventos SSE para refrescar AgentDetail
   const [versions, setVersions] = useState({});
+  // contador global de outbox: refresca ApprovalsPanel
+  const [outboxVersion, setOutboxVersion] = useState(0);
   const [connected, setConnected] = useState(false);
 
   const refreshStatus = useCallback(() => {
@@ -29,7 +32,10 @@ export default function App() {
         'status-changed': refreshStatus,
         'new-alert': refreshStatus,
         'new-inbox': bump,
-        'new-outbox': bump,
+        'new-outbox': (data) => {
+          bump(data);
+          setOutboxVersion((v) => v + 1);
+        },
         'new-log': bump,
       },
       setConnected
@@ -53,6 +59,7 @@ export default function App() {
 
       <main className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <section className="lg:col-span-2 space-y-6">
+          <ApprovalsPanel outboxVersion={outboxVersion} />
           <HealthGrid
             agents={registry.agents}
             status={status.agents}

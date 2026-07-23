@@ -2,7 +2,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getRegistry, getStatus, getMessages, getLog, isValidAgent } from './fsReader.js';
+import { getRegistry, getStatus, getMessages, getLog, getPending, isValidAgent } from './fsReader.js';
 import { createWatcher } from './watcher.js';
 import { writeRouterMessage } from './messageWriter.js';
 
@@ -68,6 +68,38 @@ app.get('/api/agents/:name/logs', async (req, res) => {
     res.json(await getLog(req.params.name, req.query.date));
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+app.get('/api/pending', async (req, res) => {
+  try {
+    res.json(await getPending());
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Aprobación/rechazo: se materializa como mensaje en router/inbox/,
+// NUNCA ejecutando la acción directamente.
+app.post('/api/pending/:id/:action', express.json({ limit: '8kb' }), async (req, res) => {
+  const { id, action } = req.params;
+  if (action !== 'approve' && action !== 'reject') {
+    return res.status(404).json({ error: `acción desconocida: ${action}` });
+  }
+  try {
+    const item = (await getPending()).find((p) => p.id === id);
+    if (!item) return res.status(404).json({ error: `operación pendiente no encontrada: ${id}` });
+
+    const verbo = action === 'approve' ? 'APROBAR' : 'RECHAZAR';
+    const result = await writeRouterMessage({
+      usuario: req.body?.usuario,
+      tema: item.agent,
+      referencia: `${item.agent}/outbox/${item.file}`,
+      texto: `${verbo} la operación pendiente ${item.id} del agente ${item.agent}.`,
+    });
+    res.status(201).json({ ...result, action, id });
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message });
   }
 });
 
